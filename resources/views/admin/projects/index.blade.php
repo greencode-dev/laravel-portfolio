@@ -35,17 +35,17 @@
                             <td class="fw-semibold">{{ $project->title }}</td>
                             <td class="text-muted">{{ Str::limit($project->description, 70) }}</td>
                             <td class="text-center">
-                                <div class="btn-group" role="group">
-                                    <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-sm btn-info text-white" title="Visualizza">
+                                <div class="btn-group gap-2" role="group">
+                                    <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-sm btn-info text-white d-flex align-items-center justify-content-center p-1" title="Visualizza">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-sm btn-warning" title="Modifica">
+                                    <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-sm btn-warning d-flex align-items-center justify-content-center p-1" title="Modifica">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                     <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Sei sicuro di voler eliminare questo progetto?')" title="Elimina">
+                                        <button type="submit" class="btn btn-sm btn-danger d-flex align-items-center justify-content-center p-1" onclick="return confirm('Sei sicuro di voler eliminare questo progetto?')" title="Elimina">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </form>
@@ -65,7 +65,7 @@
 
         @if ($projects->hasPages())
             <div class="card-footer py-3">
-                {{ $projects->links() }}
+                {{ $projects->links('pagination::bootstrap-5') }}
             </div>
         @endif
     </div>
