@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,17 @@ Route::middleware(['auth', 'verified'])
             ->name("profile");    
 
     });
+
+Route::resource("projects", ProjectController::class)
+    ->middleware(['auth', 'verified'])
+    ->names([
+        'index' => 'admin.projects.index',
+        'create' => 'admin.projects.create',
+        'store' => 'admin.projects.store',
+        'show' => 'admin.projects.show',
+        'edit' => 'admin.projects.edit',
+        'update' => 'admin.projects.update',
+        'destroy' => 'admin.projects.destroy',
+    ]);
 
 require __DIR__.'/auth.php';

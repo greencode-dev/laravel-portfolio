@@ -16,4 +16,4 @@ Per oggi, dedichiamoci alla creazione del nostro portfolio, mettendo su un'app L
 4. Verifichiamo che l'autenticazione funzioni
 5. Creiamo un layout per la nostra area admin
 
-Nota: per questo esercizio non è previsto un video di correzione giacché le funzionalità richieste sono uguali a quelle mostrate nel modulo. Pertanto le lezioni stesse fungono da guida per la correzione
+_Nota:_ per questo esercizio non è previsto un video di correzione giacché le funzionalità richieste sono uguali a quelle mostrate nel modulo. Pertanto le lezioni stesse fungono da guida per la correzione
