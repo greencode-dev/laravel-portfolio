@@ -15,6 +15,14 @@
                 <div class="card-body p-4">
                     <h2 class="display-6 fw-bold mb-3">{{ $project->title }}</h2>
                     <p class="lead text-muted">{{ $project->description }}</p>
+                    
+                    <hr class="my-4">
+                    
+                    <div class="row text-muted small">
+                        <div class="col-sm-6">
+                            <strong>Creato il:</strong> {{ $project->created_at->format('d/m/Y H:i') }}
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer bg-light d-flex justify-content-end gap-2 py-3">
                     <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning shadow-sm">

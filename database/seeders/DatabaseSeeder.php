@@ -15,6 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-       $this->call(ProjectsSeeder::class);
+        // Creazione di un utente admin per l'accesso rapido in sviluppo
+        User::factory()->create([
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+        ]);
+
+        $this->call(ProjectSeeder::class);
     }
 }

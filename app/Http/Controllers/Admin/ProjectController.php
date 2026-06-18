@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreProjectRequest;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -13,8 +14,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-        return view('projects.index', compact('projects'));
+        $projects = Project::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -22,46 +23,53 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        return view('admin.projects.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        return redirect()->route('admin.projects.index')->with('success', 'Project created successfully.');
+        $data = $request->validated();
+        $project = Project::create($data);
+
+        return redirect()->route('admin.projects.show', $project->id)->with('success', 'Progetto creato con successo.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        return view('admin.projects.show');
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        return view('admin.projects.edit');
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreProjectRequest $request, Project $project)
     {
-        return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully.');
+        $data = $request->validated();
+        $project->update($data);
+
+        return redirect()->route('admin.projects.show', $project->id)->with('success', 'Progetto aggiornato con successo.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully.');
+        $project->delete();
+        return redirect()->route('admin.projects.index')->with('success', 'Progetto eliminato con successo.');
     }
 }

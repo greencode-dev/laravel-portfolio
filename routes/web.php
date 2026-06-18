@@ -23,25 +23,14 @@ Route::middleware(['auth', 'verified'])
     ->name("admin.")
     ->prefix("admin")
     ->group( function() {
-    
+
         Route::get("/", [DashboardController::class, 'index'])
             ->name("index");
 
         Route::get("/profile", [DashboardController::class, 'profile'])
-            ->name("profile");    
+            ->name("profile");
 
+        Route::resource("projects", ProjectController::class);
     });
-
-Route::resource("projects", ProjectController::class)
-    ->middleware(['auth', 'verified'])
-    ->names([
-        'index' => 'admin.projects.index',
-        'create' => 'admin.projects.create',
-        'store' => 'admin.projects.store',
-        'show' => 'admin.projects.show',
-        'edit' => 'admin.projects.edit',
-        'update' => 'admin.projects.update',
-        'destroy' => 'admin.projects.destroy',
-    ]);
 
 require __DIR__.'/auth.php';

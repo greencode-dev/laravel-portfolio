@@ -1,17 +1,18 @@
 @extends('layouts.projects')
 
-@section('title', 'I miei Progetti')
+@section('title', 'Lista Progetti')
 
 @section('content')
+    <h1 class="mb-4">I miei Progetti</h1>
     <div class="d-flex justify-content-end mb-4">
         <a href="{{ route('admin.projects.create') }}" class="btn btn-primary shadow-sm">
             Nuovo Progetto
         </a>
     </div>
 
-    @if (session('success'))
+    @if (session('success') || session('message') || session('status'))
         <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
-            {{ session('success') }}
+            {{ session('success') ?? session('message') ?? session('status') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
@@ -28,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($projects as $project)
+                    @forelse ($projects as $project)
                         <tr>
                             <td class="px-3 fw-bold">{{ $project->id }}</td>
                             <td class="fw-semibold">{{ $project->title }}</td>
@@ -51,9 +52,21 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center py-4 text-muted">
+                                Nessun progetto trovato. <a href="{{ route('admin.projects.create') }}">Creane uno ora!</a>
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
+
+        @if ($projects->hasPages())
+            <div class="card-footer py-3">
+                {{ $projects->links() }}
+            </div>
+        @endif
     </div>
 @endsection
