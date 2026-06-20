@@ -46,6 +46,54 @@ html, body {
     }
 }
 
+// Theme toggle for light navbar (app layout)
+.theme-toggle-light {
+    @extend .theme-toggle;
+    color: rgba(0, 0, 0, 0.4);
+
+    &:hover {
+        color: rgba(0, 0, 0, 0.8);
+    }
+}
+
+// Theme toggle for guest layout (minimal floating)
+.theme-toggle-guest {
+    @extend .theme-toggle;
+    color: var(--bs-secondary-color);
+    font-size: 1.2rem;
+
+    &:hover {
+        color: var(--bs-body-color);
+    }
+}
+
+// Adaptive theme toggle (uses CSS vars — works in both modes)
+.theme-toggle-adaptive {
+    @extend .theme-toggle;
+    font-size: 1.2rem;
+    color: var(--bs-navbar-color, var(--bs-secondary-color));
+
+    &:hover {
+        color: var(--bs-navbar-hover-color, var(--bs-body-color));
+    }
+}
+
+// Dark mode overrides for the Breeze navbar (navbar-light bg-white)
+[data-bs-theme="dark"] {
+    .navbar-light.bg-white {
+        --bs-navbar-color: rgba(255, 255, 255, 0.65);
+        --bs-navbar-hover-color: #fff;
+        --bs-navbar-active-color: #fff;
+        --bs-navbar-brand-color: #fff;
+        --bs-navbar-brand-hover-color: #fff;
+        background-color: #1e293b !important;
+    }
+
+    .navbar-light .navbar-toggler-icon {
+        filter: invert(1);
+    }
+}
+
 // Icon-only button utility
 .btn-icon {
     width: 2rem;
