@@ -3,68 +3,41 @@
 @section('title', 'Lista Progetti')
 
 @section('content')
-    <h1 class="mb-4">I miei Progetti</h1>
-    <div class="d-flex justify-content-end mb-4">
+    @include('admin.partials.session-alert')
+
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-4 gap-3">
+        <div>
+            <h1 class="h3 fw-bold mb-1">I miei Progetti</h1>
+            <p class="text-secondary small mb-0">Gestisci i tuoi progetti</p>
+        </div>
         <a href="{{ route('admin.projects.create') }}" class="btn btn-primary shadow-sm">
-            Nuovo Progetto
+            <i class="fa-solid fa-plus me-1"></i> Nuovo Progetto
         </a>
     </div>
 
-    @if (session('success') || session('message') || session('status'))
-        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
-            {{ session('success') ?? session('message') ?? session('status') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
     <div class="card shadow-sm border-0">
         <div class="table-responsive">
-            <table class="table table-hover table-striped mb-0 align-middle">
+            <table class="table table-hover align-middle mb-0">
                 <thead class="table-dark">
                     <tr>
-                        <th scope="col" class="px-3">ID</th>
+                        <th scope="col" class="ps-3" style="width: 80px;">ID</th>
                         <th scope="col">Titolo</th>
                         <th scope="col">Descrizione</th>
-                        <th scope="col" class="text-center">Azioni</th>
+                        <th scope="col" class="text-center" style="width: 150px;">Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($projects as $project)
-                        <tr>
-                            <td class="px-3 fw-bold">{{ $project->id }}</td>
-                            <td class="fw-semibold">{{ $project->title }}</td>
-                            <td class="text-muted">{{ Str::limit($project->description, 70) }}</td>
-                            <td class="text-center">
-                                <div class="btn-group gap-2" role="group">
-                                    <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-sm btn-info text-white d-flex align-items-center justify-content-center p-1" title="Visualizza">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </a>
-                                    <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-sm btn-warning d-flex align-items-center justify-content-center p-1" title="Modifica">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                    <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger d-flex align-items-center justify-content-center p-1" onclick="return confirm('Sei sicuro di voler eliminare questo progetto?')" title="Elimina">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
+                        @include('admin.projects.partials.table-row')
                     @empty
-                        <tr>
-                            <td colspan="4" class="text-center py-4 text-muted">
-                                Nessun progetto trovato. <a href="{{ route('admin.projects.create') }}">Creane uno ora!</a>
-                            </td>
-                        </tr>
+                        @include('admin.projects.partials.empty-state')
                     @endforelse
                 </tbody>
             </table>
         </div>
 
         @if ($projects->hasPages())
-            <div class="card-footer py-3">
+            <div class="card-footer py-3 d-flex justify-content-center">
                 {{ $projects->links('pagination::bootstrap-5') }}
             </div>
         @endif
