@@ -1,11 +1,11 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
-
 // Variables
-@import 'variables';
+@use 'variables' as *;
 
 // Bootstrap (5.3+ with built-in dark mode via data-bs-theme)
-@import 'bootstrap/scss/bootstrap';
+@use 'bootstrap/scss/bootstrap' as *;
+
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
 
 // Smooth transitions for theme switching
 html, body {
