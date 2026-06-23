@@ -3,12 +3,12 @@
 @section('content')
 <div class="container">
     <h2 class="fs-4 text-secondary my-4">
-        {{ __("Pannello di controllo") }}
+        {{ __('Dashboard') }}
     </h2>
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">
-                <div class="card-header">{{ __("Pannello di controllo") }}</div>
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -17,11 +17,11 @@
                     </div>
                     @endif
 
-                    <p class="mb-3">{{ __("Bentornato, :name!", ["name" => Auth::user()->name]) }}</p>
-                    <p class="text-secondary small">{{ __("Verrai reindirizzato alla homepage tra pochi secondi...") }}</p>
+                    <p class="mb-3">{{ __("Welcome back, :name!", ["name" => Auth::user()->name]) }}</p>
+                    <p class="text-secondary small">{{ __("You will be redirected to the homepage in a few seconds...") }}</p>
 
                     <a href="{{ url('/') }}" class="btn btn-primary">
-                        <i class="fa-solid fa-house me-1"></i> {{ __("Vai alla homepage") }}
+                        <i class="bi bi-house me-1"></i> {{ __("Go to Homepage") }}
                     </a>
                 </div>
             </div>

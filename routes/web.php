@@ -5,6 +5,16 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('language/{locale}', function (string $locale) {
+    if (!in_array($locale, ['en', 'it'])) {
+        abort(400);
+    }
+
+    session()->put('locale', $locale);
+
+    return redirect()->back();
+})->name('language');
+
 Route::get('/', function () {
     return view('welcome');
 });

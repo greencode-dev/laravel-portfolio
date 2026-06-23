@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-secondary">
-            {{ __("Informazioni Profilo") }}
+            {{ __('Profile Information') }}
         </h2>
 
         <p class="mt-1 text-muted">
-            {{ __("Aggiorna le informazioni del tuo account e l'indirizzo email.") }}
+            {{ __("Update your account's profile information and email address.") }}
         </p>
     </header>
 
@@ -13,12 +13,12 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}">
         @csrf
         @method('patch')
 
         <div class="mb-2">
-            <label for="name">{{ __("Nome") }}</label>
+            <label for="name">{{ __('Name') }}</label>
             <input class="form-control" type="text" name="name" id="name" autocomplete="name" value="{{old('name', $user->name)}}" required autofocus>
             @error('name')
             <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
 
         <div class="mb-2">
             <label for="email">
-                {{ __("Email") }}
+                {{ __('Email') }}
             </label>
 
             <input id="email" name="email" type="email" class="form-control" value="{{ old('email', $user->email)}}" required autocomplete="username" />
@@ -43,16 +43,16 @@
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
             <div>
                 <p class="text-sm mt-2 text-muted">
-                    {{ __("Il tuo indirizzo email non è verificato.") }}
+                    {{ __('Your email address is unverified.') }}
 
                     <button form="send-verification" class="btn btn-outline-dark">
-                        {{ __("Clicca qui per inviare di nuovo l'email di verifica.") }}
+                        {{ __('Click here to re-send the verification email.') }}
                     </button>
                 </p>
 
                 @if (session('status') === 'verification-link-sent')
                 <p class="mt-2 text-success">
-                    {{ __("Un nuovo link di verifica è stato inviato al tuo indirizzo email.") }}
+                    {{ __('A fresh verification link has been sent to your email address.') }}
                 </p>
                 @endif
             </div>
@@ -60,18 +60,13 @@
         </div>
 
         <div class="d-flex align-items-center gap-4">
-            <button class="btn btn-primary" type="submit">{{ __("Salva") }}</button>
+            <button class="btn btn-primary" type="submit">{{ __('Save') }}</button>
 
             @if (session('status') === 'profile-updated')
-            <script>
-                const show = true;
-                setTimeout(() => show = false, 2000)
-                const el = document.getElementById('profile-status')
-                if (show) {
-                    el.style.display = 'block';
-                }
-            </script>
-            <p id='profile-status' class="fs-5 text-muted">{{ __("Salvato.") }}</p>
+            <div class="alert alert-success alert-dismissible fade show py-2 px-3 mb-0" role="alert">
+                <i class="bi bi-check-circle-fill me-1"></i> {{ __('Saved.') }}
+                <button type="button" class="btn-close py-2" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             @endif
         </div>
     </form>

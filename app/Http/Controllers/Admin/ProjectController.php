@@ -12,9 +12,10 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::orderBy('created_at', 'desc')->paginate(10);
+        $perPage = $request->integer('perPage', 10);
+        $projects = Project::orderBy('created_at', 'desc')->paginate($perPage)->withQueryString();
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -34,7 +35,7 @@ class ProjectController extends Controller
         $data = $request->validated();
         $project = Project::create($data);
 
-        return redirect()->route('admin.projects.show', $project->id)->with('success', 'Progetto creato con successo.');
+        return redirect()->route('admin.projects.show', $project->id)->with('success', __('Project created successfully.'));
     }
 
     /**
@@ -61,7 +62,7 @@ class ProjectController extends Controller
         $data = $request->validated();
         $project->update($data);
 
-        return redirect()->route('admin.projects.show', $project->id)->with('success', 'Progetto aggiornato con successo.');
+        return redirect()->route('admin.projects.show', $project->id)->with('success', __('Project updated successfully.'));
     }
 
     /**
@@ -70,6 +71,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('admin.projects.index')->with('success', 'Progetto eliminato con successo.');
+        return redirect()->route('admin.projects.index')->with('success', __('Project deleted successfully.'));
     }
 }

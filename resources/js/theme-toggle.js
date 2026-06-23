@@ -20,7 +20,7 @@
         }
 
         function updateTheme(t) {
-            icon.className = t === 'dark' ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off';
+            icon.className = t === 'dark' ? 'bi bi-toggle-on' : 'bi bi-toggle-off';
             if (label) label.textContent = t === 'dark' ? 'Tema scuro' : 'Tema chiaro';
         }
         updateTheme(theme);

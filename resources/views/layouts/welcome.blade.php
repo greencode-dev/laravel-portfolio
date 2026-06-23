@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="light">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <script>
+        (function() { document.documentElement.setAttribute('data-bs-theme', localStorage.getItem('theme') || 'light'); })();
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ config('app.name', 'Portfolio') }} — {{ __("Manage your projects easily and professionally") }}">
     <title>{{ config('app.name', 'Portfolio') }}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite('resources/js/app.js')
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -14,26 +17,36 @@
                 {{ config('app.name', 'Portfolio') }}
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarWelcome" aria-controls="navbarWelcome" aria-expanded="false" aria-label="{{ __('Attiva/disattiva navigazione') }}">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarWelcome" aria-controls="navbarWelcome" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarWelcome">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="d-flex align-items-center gap-2 px-3 py-1">
-                        <span class="small text-secondary fw-semibold user-select-none" id="themeLabel" style="cursor: pointer;">{{ __('Tema chiaro') }}</span>
-                        <button class="theme-toggle-adaptive" id="themeToggle" title="Toggle tema" type="button">
-                            <i class="fa-solid fa-toggle-off" id="themeIcon"></i>
+                        <span class="small text-secondary fw-semibold user-select-none" id="themeLabel" style="cursor: pointer;">{{ __('Light theme') }}</span>
+                        <button class="theme-toggle" id="themeToggle" title="Toggle tema" type="button">
+                            <i class="bi bi-toggle-off" id="themeIcon"></i>
                         </button>
+                    </li>
+
+                    <li class="nav-item dropdown px-2">
+                        <a class="nav-link dropdown-toggle py-1" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ strtoupper(app()->getLocale()) }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item {{ app()->getLocale() === 'en' ? 'active' : '' }}" href="{{ route('language', 'en') }}">EN</a>
+                            <a class="dropdown-item {{ app()->getLocale() === 'it' ? 'active' : '' }}" href="{{ route('language', 'it') }}">IT</a>
+                        </div>
                     </li>
 
                     @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Log in') }}</a>
                     </li>
                     @if (Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                     @endif
                     @else
@@ -42,11 +55,11 @@
                             {{ Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Pannello di controllo') }}</a>
-                            <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profilo') }}</a>
-                            <a class="dropdown-item" href="{{ route('admin.projects.index') }}">{{ __('Progetti') }}</a>
+                            <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Dashboard') }}</a>
+                            <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
+                            <a class="dropdown-item" href="{{ route('admin.projects.index') }}">{{ __('Projects') }}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Esci') }}</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
                         </div>
                     </li>
@@ -59,7 +72,7 @@
     @yield('content')
 
     <footer class="py-3 text-center small mt-auto" style="color: var(--bs-secondary-color);">
-        &copy; {{ date('Y') }} {{ config('app.name', 'Portfolio') }}. {{ __('Tutti i diritti riservati.') }}
+        &copy; {{ date('Y') }} {{ config('app.name', 'Portfolio') }}. {{ __('All rights reserved.') }}
     </footer>
 </body>
 </html>
