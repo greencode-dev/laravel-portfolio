@@ -7,20 +7,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite('resources/js/app.js')
 </head>
-<body class="bg-body d-flex flex-column min-vh-100">
-    <div class="container py-3">
-        <div class="d-flex justify-content-end align-items-center gap-2">
-            <span class="small fw-semibold user-select-none" id="themeLabel" style="cursor: pointer; color: var(--bs-secondary-color);">Light Mode</span>
-            <button class="theme-toggle-adaptive" id="themeToggle" title="Toggle tema" type="button">
-                <i class="fa-solid fa-toggle-off" id="themeIcon"></i>
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                {{ config('app.name', 'Portfolio') }}
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarWelcome" aria-controls="navbarWelcome" aria-expanded="false" aria-label="{{ __('Attiva/disattiva navigazione') }}">
+                <span class="navbar-toggler-icon"></span>
             </button>
+
+            <div class="collapse navbar-collapse" id="navbarWelcome">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="d-flex align-items-center gap-2 px-3 py-1">
+                        <span class="small text-secondary fw-semibold user-select-none" id="themeLabel" style="cursor: pointer;">{{ __('Tema chiaro') }}</span>
+                        <button class="theme-toggle-adaptive" id="themeToggle" title="Toggle tema" type="button">
+                            <i class="fa-solid fa-toggle-off" id="themeIcon"></i>
+                        </button>
+                    </li>
+
+                    @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                    </li>
+                    @endif
+                    @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Pannello di controllo') }}</a>
+                            <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profilo') }}</a>
+                            <a class="dropdown-item" href="{{ route('admin.projects.index') }}">{{ __('Progetti') }}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Esci') }}</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+                        </div>
+                    </li>
+                    @endguest
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
 
     @yield('content')
 
-    <footer class="py-3 text-center small" style="color: var(--bs-secondary-color);">
-        &copy; {{ date('Y') }} {{ config('app.name', 'Portfolio') }}. Tutti i diritti riservati.
+    <footer class="py-3 text-center small mt-auto" style="color: var(--bs-secondary-color);">
+        &copy; {{ date('Y') }} {{ config('app.name', 'Portfolio') }}. {{ __('Tutti i diritti riservati.') }}
     </footer>
 </body>
 </html>

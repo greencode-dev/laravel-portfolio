@@ -21,7 +21,7 @@
 
         function updateTheme(t) {
             icon.className = t === 'dark' ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off';
-            if (label) label.textContent = t === 'dark' ? 'Dark Mode' : 'Light Mode';
+            if (label) label.textContent = t === 'dark' ? 'Tema scuro' : 'Tema chiaro';
         }
         updateTheme(theme);
 

@@ -1,15 +1,47 @@
-<nav class="navbar navbar-dark bg-dark shadow-sm mb-4">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm mb-4">
     <div class="container">
         <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ route('admin.projects.index') }}">
             <i class="fa-solid fa-folder-open"></i>
             <span>Portfolio Admin</span>
         </a>
 
-        <div class="d-flex align-items-center gap-2">
-            <span class="small text-white-50 fw-semibold user-select-none" id="themeLabel" style="cursor: pointer;">Light Mode</span>
-            <button class="theme-toggle" id="themeToggle" title="Toggle tema" type="button">
-                <i class="fa-solid fa-toggle-off" id="themeIcon"></i>
-            </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarProjects" aria-controls="navbarProjects" aria-expanded="false" aria-label="{{ __('Attiva/disattiva navigazione') }}">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarProjects">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="d-flex align-items-center gap-2 px-3 py-1">
+                    <span class="small text-white-50 fw-semibold user-select-none" id="themeLabel" style="cursor: pointer;">{{ __('Tema chiaro') }}</span>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle tema" type="button">
+                        <i class="fa-solid fa-toggle-off" id="themeIcon"></i>
+                    </button>
+                </li>
+
+                @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
+                </li>
+                @if (Route::has('register'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                </li>
+                @endif
+                @else
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Pannello di controllo') }}</a>
+                        <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profilo') }}</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Esci') }}</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+                    </div>
+                </li>
+                @endguest
+            </ul>
         </div>
     </div>
 </nav>

@@ -24,14 +24,14 @@
                     {{ config('app.name', 'Laravel') }}
                 </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Attiva/disattiva navigazione') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="d-flex align-items-center gap-2 px-3 py-1">
-                            <span class="small text-secondary fw-semibold user-select-none" id="themeLabel" style="cursor: pointer;">Light Mode</span>
+                            <span class="small text-secondary fw-semibold user-select-none" id="themeLabel" style="cursor: pointer;">{{ __('Tema chiaro') }}</span>
                             <button class="theme-toggle-adaptive" id="themeToggle" title="Toggle tema" type="button">
                                 <i class="fa-solid fa-toggle-off" id="themeIcon"></i>
                             </button>
@@ -39,11 +39,11 @@
 
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                         </li>
                         @endif
                         @else
@@ -53,11 +53,11 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
-                                <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
+                                <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Pannello di controllo') }}</a>
+                                <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profilo') }}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Esci') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -75,6 +75,8 @@
             @yield('content')
         </main>
     </div>
+
+    @stack('scripts')
 </body>
 
 </html>

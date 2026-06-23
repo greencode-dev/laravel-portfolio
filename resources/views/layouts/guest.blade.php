@@ -15,7 +15,7 @@
     <body class="font-sans text-gray-900 antialiased">
         <div class="relative">
             <div class="absolute top-4 right-4 flex items-center gap-2 z-10">
-                <span class="text-xs text-gray-500 dark:text-gray-400 font-semibold select-none" id="themeLabel" style="cursor: pointer;">Light Mode</span>
+                <span class="text-xs text-gray-500 dark:text-gray-400 font-semibold select-none" id="themeLabel" style="cursor: pointer;">{{ __('Tema chiaro') }}</span>
                 <button class="theme-toggle-guest" id="themeToggle" title="Toggle tema" type="button">
                     <i class="fa-solid fa-toggle-off" id="themeIcon"></i>
                 </button>

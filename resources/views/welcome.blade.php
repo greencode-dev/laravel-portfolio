@@ -7,22 +7,22 @@
                 <i class="fa-solid fa-folder-open text-primary" style="font-size: 3.5rem;"></i>
             </div>
             <h1 class="display-5 fw-bold mb-2">{{ config('app.name', 'Portfolio') }}</h1>
-            <p class="text-secondary mb-4">Gestisci i tuoi progetti in modo semplice e professionale</p>
+            <p class="text-secondary mb-4">{{ __("Gestisci i tuoi progetti in modo semplice e professionale") }}</p>
             <div class="d-flex justify-content-center gap-3">
-                @auth
-                    <a href="{{ url('/dashboard') }}" class="btn btn-primary px-4 shadow-sm">
-                        <i class="fa-solid fa-gauge me-1"></i> Dashboard
-                    </a>
-                @else
+                @guest
                     <a href="{{ route('login') }}" class="btn btn-primary px-4 shadow-sm">
-                        <i class="fa-solid fa-right-to-bracket me-1"></i> Accedi
+                        <i class="fa-solid fa-right-to-bracket me-1"></i> {{ __("Accedi") }}
                     </a>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="btn btn-outline-secondary px-4 shadow-sm">
-                            <i class="fa-solid fa-user-plus me-1"></i> Registrati
+                            <i class="fa-solid fa-user-plus me-1"></i> {{ __("Registrati") }}
                         </a>
                     @endif
-                @endauth
+                @else
+                    <a href="{{ route('admin.projects.index') }}" class="btn btn-primary px-4 shadow-sm">
+                        <i class="fa-solid fa-folder-open me-1"></i> {{ __("Progetti") }}
+                    </a>
+                @endguest
             </div>
         </div>
     </div>
