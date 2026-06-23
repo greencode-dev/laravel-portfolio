@@ -22,6 +22,7 @@
                     <tr>
                         <th scope="col" class="ps-3" style="width: 80px;">ID</th>
                         <th scope="col">Titolo</th>
+                        <th scope="col">Tipologia</th>
                         <th scope="col">Descrizione</th>
                         <th scope="col" class="text-center" style="width: 150px;">Azioni</th>
                     </tr>

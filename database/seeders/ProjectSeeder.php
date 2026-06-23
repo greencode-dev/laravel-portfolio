@@ -13,10 +13,13 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
+        $types = ['Web Design', 'Graphic Design', 'Back End', 'Front End', 'Full Stack'];
+
         for ($i = 0; $i < 10; $i++) {
             Project::create([
                 'title' => $faker->sentence(3),
                 'description' => $faker->paragraphs(3, true),
+                'type' => $faker->randomElement($types),
             ]);
         }
     }

@@ -12,6 +12,22 @@
 </div>
 
 <div class="mb-3">
+    <label for="type" class="form-label fw-medium">Tipologia</label>
+    <select name="type" id="type"
+        class="form-select @error('type') is-invalid @enderror">
+        <option value="">— Seleziona una tipologia —</option>
+        <option value="Web Design" {{ old('type', $project->type ?? '') == 'Web Design' ? 'selected' : '' }}>Web Design</option>
+        <option value="Graphic Design" {{ old('type', $project->type ?? '') == 'Graphic Design' ? 'selected' : '' }}>Graphic Design</option>
+        <option value="Back End" {{ old('type', $project->type ?? '') == 'Back End' ? 'selected' : '' }}>Back End</option>
+        <option value="Front End" {{ old('type', $project->type ?? '') == 'Front End' ? 'selected' : '' }}>Front End</option>
+        <option value="Full Stack" {{ old('type', $project->type ?? '') == 'Full Stack' ? 'selected' : '' }}>Full Stack</option>
+    </select>
+    @error('type')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
     <label for="description" class="form-label fw-medium">Descrizione</label>
     <textarea name="description" id="description" rows="6"
         class="form-control @error('description') is-invalid @enderror"
