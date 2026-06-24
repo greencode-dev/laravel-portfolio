@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="{{ config('app.name', 'Portfolio') }} — {{ __("Manage your projects easily and professionally") }}">
+    <meta name="description" content="{{ __(config('app.name')) }} — {{ __("Manage your projects easily and professionally") }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ __(config('app.name')) }}</title>
 
     @vite(['resources/js/app.js'])
 </head>
@@ -19,7 +19,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ __(config('app.name')) }}
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

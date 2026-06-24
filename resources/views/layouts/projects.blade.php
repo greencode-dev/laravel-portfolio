@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="{{ config('app.name', 'Portfolio') }} — {{ __("Manage your projects easily and professionally") }}">
-    <title>@yield('title') — {{ config('app.name', 'Portfolio') }}</title>
+    <meta name="description" content="{{ __(config('app.name')) }} — {{ __("Manage your projects easily and professionally") }}">
+    <title>@yield('title') — {{ __(config('app.name')) }}</title>
 
     @vite('resources/js/app.js')
 </head>

@@ -3,7 +3,7 @@
 @section('content')
 <main class="container d-flex flex-column justify-content-center align-items-center flex-grow-1 text-center py-5">
     <div class="hero-section">
-        <h1 class="display-5 fw-bold mb-3">{{ config('app.name', 'Portfolio') }}</h1>
+        <h1 class="display-5 fw-bold mb-3">{{ __(config('app.name')) }}</h1>
         <p class="text-secondary mb-4 fs-5">{{ __("Manage your projects easily and professionally") }}</p>
 
         @guest
