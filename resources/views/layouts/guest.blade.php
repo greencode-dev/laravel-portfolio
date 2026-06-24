@@ -15,22 +15,11 @@
     <body class="bg-body-tertiary">
         <div class="position-relative min-vh-100 d-flex flex-column justify-content-center align-items-center">
             <div class="position-absolute top-0 end-0 d-flex align-items-center gap-2 z-1 pe-3 pt-3">
-                <span class="small text-secondary fw-semibold user-select-none" id="themeLabel" style="cursor: pointer;">{{ __('Light theme') }}</span>
-                <button class="theme-toggle" id="themeToggle" title="Toggle tema" type="button">
-                    <i class="bi bi-toggle-off" id="themeIcon"></i>
-                </button>
+                <x-theme-toggle />
 
                 <div class="vr mx-1"></div>
 
-                <div class="dropdown">
-                    <a class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ strtoupper(app()->getLocale()) }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item {{ app()->getLocale() === 'en' ? 'active' : '' }}" href="{{ route('language', 'en') }}">EN</a>
-                        <a class="dropdown-item {{ app()->getLocale() === 'it' ? 'active' : '' }}" href="{{ route('language', 'it') }}">IT</a>
-                    </div>
-                </div>
+                <x-language-switcher variant="btn" />
             </div>
 
             <div class="text-center mb-4">

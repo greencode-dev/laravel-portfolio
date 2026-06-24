@@ -9,8 +9,6 @@
         var icon = document.getElementById('themeIcon');
         if (!toggle || !icon) return;
 
-        var label = document.getElementById('themeLabel');
-
         function toggleTheme() {
             var current = html.getAttribute('data-bs-theme');
             var next = current === 'dark' ? 'light' : 'dark';
@@ -20,12 +18,10 @@
         }
 
         function updateTheme(t) {
-            icon.className = t === 'dark' ? 'bi bi-toggle-on' : 'bi bi-toggle-off';
-            if (label) label.textContent = t === 'dark' ? 'Tema scuro' : 'Tema chiaro';
+            icon.className = t === 'dark' ? 'bi bi-moon-fill' : 'bi bi-sun-fill';
         }
         updateTheme(theme);
 
         toggle.addEventListener('click', toggleTheme);
-        if (label) label.addEventListener('click', toggleTheme);
     });
 })();

@@ -28,22 +28,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto align-items-lg-center">
-                        <li class="d-flex align-items-center gap-2 px-3 py-1">
-                            <span class="small text-secondary fw-semibold user-select-none" id="themeLabel" style="cursor: pointer;">{{ __('Light theme') }}</span>
-                            <button class="theme-toggle" id="themeToggle" title="Toggle tema" type="button">
-                                <i class="bi bi-toggle-off" id="themeIcon"></i>
-                            </button>
+                        <li class="d-flex align-items-center px-3 py-1">
+                            <x-theme-toggle />
                         </li>
 
-                        <li class="nav-item dropdown px-2">
-                            <a class="nav-link dropdown-toggle py-1" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ strtoupper(app()->getLocale()) }}
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item {{ app()->getLocale() === 'en' ? 'active' : '' }}" href="{{ route('language', 'en') }}">EN</a>
-                                <a class="dropdown-item {{ app()->getLocale() === 'it' ? 'active' : '' }}" href="{{ route('language', 'it') }}">IT</a>
-                            </div>
-                        </li>
+                        <x-language-switcher variant="nav" />
 
                         @guest
                         <li class="nav-item">
