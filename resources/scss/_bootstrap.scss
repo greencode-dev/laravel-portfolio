@@ -1,0 +1,16 @@
+@forward 'bootstrap/scss/bootstrap' with (
+  $primary: #6366f1,
+  $info: #06b6d4,
+  $warning: #f59e0b,
+  $danger: #ef4444,
+  $success: #10b981,
+  $body-bg: #f8fafc,
+  $font-family-sans-serif: ('Nunito', sans-serif),
+  $font-size-base: 0.9rem,
+  $line-height-base: 1.6,
+  $card-border-radius: 0.75rem,
+  $card-cap-bg: transparent,
+  $table-cell-padding-y: 0.75rem,
+  $table-cell-padding-x: 1rem,
+  $table-th-font-weight: 600,
+);

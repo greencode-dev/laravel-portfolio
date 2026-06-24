@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm mb-4">
+<nav class="navbar navbar-expand-md navbar-dark navbar-glass shadow-sm mb-4">
     <div class="container">
         <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ route('admin.projects.index') }}">
             <i class="bi bi-folder2-open"></i>
