@@ -33,6 +33,17 @@
                 <h5 class="text-secondary">{{ __("Description") }}</h5>
                 <p>{{ $project->description ?: '—' }}</p>
             </div>
+
+            @if ($project->technologies->isNotEmpty())
+                <div class="mt-4">
+                    <h5 class="text-secondary mb-2">{{ __("Technologies") }}</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        @foreach ($project->technologies as $technology)
+                            <span class="badge bg-secondary bg-opacity-10 text-secondary px-3 py-2">{{ $technology->name }}</span>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 

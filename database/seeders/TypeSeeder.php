@@ -16,10 +16,10 @@ class TypeSeeder extends Seeder
         ]);
 
         foreach ($types as $name) {
-            Type::create([
-                'name' => $name,
-                'slug' => Str::slug($name),
-            ]);
+            Type::firstOrCreate(
+                ['slug' => Str::slug($name)],
+                ['name' => $name, 'slug' => Str::slug($name)],
+            );
         }
     }
 }
