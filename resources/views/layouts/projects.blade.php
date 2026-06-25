@@ -12,7 +12,7 @@
 
     @vite('resources/js/app.js')
 </head>
-<body>
+<body style="background: linear-gradient(180deg, var(--bs-body-bg) 0%, rgba(99, 102, 241, 0.04) 100%); min-height: 100vh;">
     @include('layouts.partials.navbar')
 
     <main class="container">
@@ -20,5 +20,7 @@
             @yield('content')
         </div>
     </main>
+
+    @stack('scripts')
 </body>
 </html>

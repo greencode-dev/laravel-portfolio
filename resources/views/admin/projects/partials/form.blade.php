@@ -19,11 +19,9 @@
         <label for="type" class="form-label fw-medium">{{ __("Type") }}</label>
         <select name="type" id="type" class="form-select @error('type') is-invalid @enderror">
             <option value="">{{ __("-- Select a type --") }}</option>
-            <option value="Web App" {{ old('type', $project->type ?? '') == 'Web App' ? 'selected' : '' }}>Web App</option>
-            <option value="Web Design" {{ old('type', $project->type ?? '') == 'Web Design' ? 'selected' : '' }}>Web Design</option>
-            <option value="API" {{ old('type', $project->type ?? '') == 'API' ? 'selected' : '' }}>API</option>
-            <option value="Mobile" {{ old('type', $project->type ?? '') == 'Mobile' ? 'selected' : '' }}>Mobile</option>
-            <option value="Design System" {{ old('type', $project->type ?? '') == 'Design System' ? 'selected' : '' }}>Design System</option>
+            @foreach (config('projects.types') as $type)
+                <option value="{{ $type }}" {{ old('type', $project->type ?? '') == $type ? 'selected' : '' }}>{{ $type }}</option>
+            @endforeach
         </select>
         @error('type')
             <div class="invalid-feedback">{{ $message }}</div>

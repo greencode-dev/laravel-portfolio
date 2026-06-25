@@ -12,7 +12,7 @@
 
         @vite(['resources/js/app.js'])
     </head>
-    <body class="bg-body-tertiary">
+    <body style="background: linear-gradient(180deg, var(--bs-body-bg) 0%, rgba(99, 102, 241, 0.04) 100%);">
         <div class="position-relative min-vh-100 d-flex flex-column justify-content-center align-items-center">
             <div class="position-absolute top-0 end-0 d-flex align-items-center gap-2 z-1 pe-3 pt-3">
                 <x-theme-toggle />
@@ -23,15 +23,13 @@
             </div>
 
             <div class="text-center mb-4">
-                <a href="/">
-                    <x-application-logo style="width: 5rem; height: 5rem; color: var(--bs-secondary-color);" />
+                <a href="/" class="text-decoration-none">
+                    <i class="bi bi-folder2-open" style="font-size: 3rem; color: var(--bs-primary);"></i>
                 </a>
             </div>
 
-            <div class="card shadow-sm" style="max-width: 28rem; width: 100%;">
-                <div class="card-body p-4">
-                    {{ $slot }}
-                </div>
+            <div class="card auth-card shadow-sm" style="max-width: 28rem; width: 100%;">
+                    @yield('content')
             </div>
         </div>
     </body>

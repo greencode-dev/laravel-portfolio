@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">
-    <h4 class="card-title mb-0 text-center fw-bold">{{ __('Verify Your Email Address') }}</h4>
+    <h4 class="card-title mb-0 text-center fw-bold font-display">{{ __('Verify Your Email Address') }}</h4>
 </div>
 <div class="card-body">
     @if (session('resent'))

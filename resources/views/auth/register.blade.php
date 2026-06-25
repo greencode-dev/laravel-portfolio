@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">
-    <h4 class="card-title mb-0 text-center fw-bold">{{ __('Register') }}</h4>
+    <h4 class="card-title mb-0 text-center fw-bold font-display">{{ __('Register') }}</h4>
 </div>
 <div class="card-body">
     <form method="POST" action="{{ route('register') }}">

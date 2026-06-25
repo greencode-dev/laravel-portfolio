@@ -3,8 +3,10 @@
 @section('title', __("Project Details"))
 
 @section('content')
+    @include('admin.partials.session-alert')
+
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 fw-bold mb-0">{{ __("Project Details") }}</h1>
+        <h1 class="h3 fw-bold mb-0 font-display">{{ __("Project Details") }}</h1>
         <a href="{{ route('admin.projects.index') }}" class="btn btn-outline-secondary">
             <i class="bi bi-arrow-left me-1"></i> {{ __("Back") }}
         </a>
@@ -18,16 +20,12 @@
                     @include('admin.projects.partials.show-metadata')
                 </div>
                 <div class="d-flex gap-2">
-                    <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning shadow-sm">
+                    <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-outline-warning shadow-sm">
                         <i class="bi bi-pencil-square me-1"></i> {{ __("Edit") }}
                     </a>
-                    <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger shadow-sm" onclick="return confirm('{{ __("Are you sure you want to delete this project?") }}')">
-                            <i class="bi bi-trash me-1"></i> {{ __("Delete") }}
-                        </button>
-                    </form>
+                    <button type="button" class="btn btn-outline-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-project-name="{{ $project->title }}" data-action="{{ route('admin.projects.destroy', $project->id) }}">
+                        <i class="bi bi-trash me-1"></i> {{ __("Delete") }}
+                    </button>
                 </div>
             </div>
 
@@ -37,4 +35,6 @@
             </div>
         </div>
     </div>
+
+    @include('admin.projects.partials.delete-modal')
 @endsection

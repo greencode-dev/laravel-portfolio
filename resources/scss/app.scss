@@ -23,10 +23,6 @@ html, body {
     --bs-body-color: #e2e8f0;
     --bs-card-bg: #1e293b;
     --bs-card-border-color: #334155;
-
-    .navbar.bg-dark {
-        background-color: #1e293b !important;
-    }
 }
 
 // Light mode refinements
@@ -322,13 +318,21 @@ html, body {
     }
 }
 
-// Type badge colors
+// Type badge colors — fallback first, then specific overrides
+.badge-type {
+    background-color: rgba(var(--bs-secondary-rgb), 0.12) !important;
+    color: var(--bs-secondary) !important;
+}
+
 @each $type, $color in (
     "web-design": #6366f1,
     "graphic-design": #ec4899,
     "back-end": #10b981,
     "front-end": #06b6d4,
-    "full-stack": #f59e0b
+    "full-stack": #f59e0b,
+    "mobile": #8b5cf6,
+    "api": #14b8a6,
+    "design-system": #f97316
 ) {
     .badge-type-#{$type} {
         background-color: rgba($color, 0.12) !important;
@@ -345,26 +349,29 @@ html, body {
     align-items: center;
     justify-content: center;
     border-radius: 0.375rem;
+    transition: all 0.15s ease;
+
+    &:hover {
+        transform: translateY(-1px);
+    }
 }
 
-// Table header modern style
-.table {
+// Theme-aware table header
+.table-thead {
     th {
         font-weight: 600;
         text-transform: uppercase;
         font-size: 0.75rem;
         letter-spacing: 0.05em;
+        background-color: rgba(var(--bs-primary-rgb), 0.06);
+        color: var(--bs-primary);
+        border-bottom: 2px solid var(--bs-primary);
     }
 }
 
 // Pagination alignment
 .pagination {
     margin-bottom: 0;
-}
-
-// Navbar bottom border accent
-.navbar {
-    border-bottom: 2px solid var(--bs-primary);
 }
 
 // Auth card header accent

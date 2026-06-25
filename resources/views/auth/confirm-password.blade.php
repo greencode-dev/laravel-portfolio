@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card-header">
-    <h4 class="card-title mb-0 text-center fw-bold">{{ __('Confirm Password') }}</h4>
+    <h4 class="card-title mb-0 text-center fw-bold font-display">{{ __('Confirm Password') }}</h4>
 </div>
 <div class="card-body">
     <p class="text-muted mb-3">{{ __('Please confirm your password before continuing.') }}</p>

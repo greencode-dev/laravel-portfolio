@@ -14,7 +14,7 @@
     @vite(['resources/js/app.js'])
 </head>
 
-<body>
+<body style="background: linear-gradient(180deg, var(--bs-body-bg) 0%, rgba(99, 102, 241, 0.04) 100%);">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-glass shadow-sm">
             <div class="container">
