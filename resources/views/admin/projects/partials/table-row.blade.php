@@ -3,7 +3,7 @@
     <td class="fw-semibold">{{ $project->title }}</td>
     <td>
         @if ($project->type)
-            <span class="badge badge-type badge-type-{{ strtolower(Str::slug($project->type)) }} px-2 py-1">{{ $project->type }}</span>
+            <span class="badge badge-type badge-type-{{ $project->type->slug }} px-2 py-1">{{ $project->type->name }}</span>
         @else
             <span class="text-secondary">—</span>
         @endif

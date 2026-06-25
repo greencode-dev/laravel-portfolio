@@ -1,11 +1,11 @@
 <div class="d-flex flex-wrap gap-3 small text-secondary mt-2">
     @if ($project->type)
-        <span class="badge badge-type-{{ strtolower(Str::slug($project->type)) }} px-2 py-1">{{ $project->type }}</span>
+        <span class="badge badge-type-{{ $project->type->slug }} px-2 py-1">{{ $project->type->name }}</span>
     @endif
     <div class="d-flex flex-wrap gap-3">
         <span><strong>{{ __("Type:") }}</strong>
             @if ($project->type)
-                {{ $project->type }}
+                {{ $project->type->name }}
             @else
                 —
             @endif

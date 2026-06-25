@@ -16,7 +16,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:65535'],
-            'type' => ['nullable', 'string', 'max:100'],
+            'type_id' => ['nullable', 'integer', 'exists:types,id'],
         ];
     }
 
@@ -25,7 +25,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'title' => 'titolo',
             'description' => 'descrizione',
-            'type' => 'tipologia',
+            'type_id' => 'tipologia',
         ];
     }
 }

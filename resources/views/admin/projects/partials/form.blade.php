@@ -17,13 +17,13 @@
 
     <div class="mb-3">
         <label for="type" class="form-label fw-medium">{{ __("Type") }}</label>
-        <select name="type" id="type" class="form-select @error('type') is-invalid @enderror">
+        <select name="type_id" id="type_id" class="form-select @error('type_id') is-invalid @enderror">
             <option value="">{{ __("-- Select a type --") }}</option>
-            @foreach (config('projects.types') as $type)
-                <option value="{{ $type }}" {{ old('type', $project->type ?? '') == $type ? 'selected' : '' }}>{{ $type }}</option>
+            @foreach ($types as $type)
+                <option value="{{ $type->id }}" {{ old('type_id', $project->type_id ?? '') == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
             @endforeach
         </select>
-        @error('type')
+        @error('type_id')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
