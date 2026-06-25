@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
 
         session()->flash('login_redirect', true);
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('admin.projects.index', absolute: false));
     }
 
     /**

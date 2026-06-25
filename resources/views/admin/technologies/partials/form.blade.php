@@ -15,8 +15,8 @@
         @enderror
     </div>
 
-    <div class="d-flex gap-2">
-        <a href="{{ route('admin.technologies.index') }}" class="btn btn-outline-secondary">
+    <div class="d-flex justify-content-end gap-2 align-items-center">
+        <a href="{{ $cancelRoute ?? route('admin.technologies.index') }}" class="btn btn-outline-secondary">
             <i class="bi bi-x-lg me-1"></i> {{ __("Cancel") }}
         </a>
         <button type="submit" class="btn btn-primary shadow-sm">

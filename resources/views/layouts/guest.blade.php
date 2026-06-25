@@ -12,7 +12,7 @@
 
         @vite(['resources/js/app.js'])
     </head>
-    <body style="background: linear-gradient(180deg, var(--bs-body-bg) 0%, rgba(99, 102, 241, 0.04) 100%);">
+    <body style="background: linear-gradient(180deg, var(--bs-body-bg) 0%, rgba(var(--bs-primary-rgb), 0.04) 100%);">
         <div class="position-relative min-vh-100 d-flex flex-column justify-content-center align-items-center">
             <div class="position-absolute top-0 end-0 d-flex align-items-center gap-2 z-1 pe-3 pt-3">
                 <x-theme-toggle />

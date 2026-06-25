@@ -39,4 +39,6 @@ Route::middleware(['auth', 'verified'])->name("admin.")->prefix("admin")->group(
         Route::resource("technologies", TechnologyController::class);
     });
 
+Route::get('/palette-preview', fn () => view('admin.palette-preview'));
+
 require __DIR__.'/auth.php';

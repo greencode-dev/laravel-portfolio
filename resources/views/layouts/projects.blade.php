@@ -12,14 +12,19 @@
 
     @vite('resources/js/app.js')
 </head>
-<body style="background: linear-gradient(180deg, var(--bs-body-bg) 0%, rgba(99, 102, 241, 0.04) 100%); min-height: 100vh;">
+<body class="bg-admin d-flex flex-column">
     @include('layouts.partials.navbar')
 
-    <main class="container">
+    <main class="container flex-grow-1">
         <div class="py-4">
             @yield('content')
         </div>
     </main>
+
+    <footer class="py-3 text-center small" style="color: var(--bs-secondary-color); border-top: 1px solid rgba(var(--bs-primary-rgb), 0.1);">
+        &copy; {{ date('Y') }} {{ __(config('app.name')) }}.
+        <a href="{{ url('palette-preview') }}" style="color: var(--bs-primary); text-decoration: none;">{{ __('Palette') }}</a>
+    </footer>
 
     @stack('scripts')
 </body>

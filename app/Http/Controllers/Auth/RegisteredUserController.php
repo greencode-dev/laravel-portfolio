@@ -48,6 +48,6 @@ class RegisteredUserController extends Controller
 
         session()->flash('login_redirect', true);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('admin.projects.index', absolute: false));
     }
 }

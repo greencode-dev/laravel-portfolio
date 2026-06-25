@@ -10,8 +10,8 @@
     </header>
 
     <!-- Modal trigger button -->
-    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-account">
-        {{ __('Delete Account') }}
+    <button type="button" class="btn btn-danger btn-lg shadow-sm" data-bs-toggle="modal" data-bs-target="#delete-account">
+        <i class="bi bi-trash me-1"></i> {{ __('Delete Account') }}
     </button>
 
     <!-- Modal Body -->
@@ -50,8 +50,8 @@
 
 
 
-                            <button type="submit" class="btn btn-danger">
-                                {{ __('Delete Account') }}
+                            <button type="submit" class="btn btn-danger shadow-sm">
+                                <i class="bi bi-trash me-1"></i> {{ __('Delete Account') }}
                             </button>
                         </div>
                     </form>

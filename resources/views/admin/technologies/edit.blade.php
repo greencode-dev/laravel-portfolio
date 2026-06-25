@@ -10,12 +10,13 @@
         </a>
     </div>
 
-    <div class="card shadow-sm border-0">
+    <div class="card shadow-sm border-0 card-accent-left">
         <div class="card-body p-4">
             @include('admin.technologies.partials.form', [
                 'action' => route('admin.technologies.update', $technology->id),
                 'method' => 'PUT',
                 'submitLabel' => __('Update Technology'),
+                'cancelRoute' => route('admin.technologies.show', $technology->id),
             ])
         </div>
     </div>

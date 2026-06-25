@@ -17,17 +17,24 @@ html, body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-// Dark mode refinements
+// Dark mode refinements — Notte Napoli
 [data-bs-theme="dark"] {
     --bs-body-bg: #0f172a;
-    --bs-body-color: #e2e8f0;
-    --bs-card-bg: #1e293b;
-    --bs-card-border-color: #334155;
+    --bs-body-color: #cbd5e1;
+    --bs-card-bg: #1a2744;
+    --bs-card-border-color: #243b5e;
+    --bs-primary: #38bdf8;
+    --bs-primary-rgb: 56, 189, 248;
 }
 
-// Light mode refinements
+// Light mode refinements — Azzurro Napoli
 [data-bs-theme="light"] {
-    --bs-card-border-color: rgba(0, 0, 0, 0.08);
+    --bs-body-bg: #f6f8fa;
+    --bs-body-color: #1e293b;
+    --bs-card-bg: #ffffff;
+    --bs-card-border-color: rgba(18, 160, 215, 0.08);
+    --bs-primary: #12A0D7;
+    --bs-primary-rgb: 18, 160, 215;
 }
 
 // Theme toggle button (adaptive via CSS variables)
@@ -128,7 +135,7 @@ html, body {
 // ──────────────────────────────────────────────
 
 .hero-section {
-    background: linear-gradient(180deg, var(--bs-body-bg) 0%, rgba(99, 102, 241, 0.04) 100%);
+    background: linear-gradient(180deg, var(--bs-body-bg) 0%, rgba(var(--bs-primary-rgb), 0.04) 100%);
     position: relative;
     overflow: hidden;
     min-height: 70vh;
@@ -143,7 +150,7 @@ html, body {
         width: 40rem;
         height: 40rem;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(var(--bs-primary-rgb), 0.06) 0%, transparent 70%);
         pointer-events: none;
     }
 }
@@ -166,7 +173,7 @@ html, body {
     &--1 {
         width: 35rem;
         height: 35rem;
-        background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(var(--bs-primary-rgb), 0.25) 0%, transparent 70%);
         top: -15%;
         right: -5%;
         animation: floatOrb 25s ease-in-out infinite;
@@ -241,12 +248,12 @@ html, body {
 .hero-icon i {
     font-size: 4rem;
     color: var(--bs-primary);
-    filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.25));
+    filter: drop-shadow(0 4px 12px rgba(var(--bs-primary-rgb), 0.25));
 }
 
 // Gradient text
 .gradient-text {
-    background: linear-gradient(135deg, var(--bs-primary) 0%, #06b6d4 50%, #6366f1 100%);
+    background: linear-gradient(135deg, var(--bs-primary) 0%, #06b6d4 50%, var(--bs-primary) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -264,7 +271,7 @@ html, body {
 
     &:hover {
         transform: translateY(-6px);
-        box-shadow: 0 12px 32px rgba(99, 102, 241, 0.12);
+        box-shadow: 0 12px 32px rgba(var(--bs-primary-rgb), 0.12);
     }
 }
 
@@ -379,4 +386,39 @@ html, body {
     border-bottom: 2px solid var(--bs-primary);
     color: var(--bs-primary);
     font-weight: 600;
+}
+
+// ──────────────────────────────────────────────
+// Admin background — dot grid pattern
+// ──────────────────────────────────────────────
+.bg-admin {
+    min-height: 100vh;
+    background:
+        linear-gradient(180deg, var(--bs-body-bg) 0%, rgba(var(--bs-primary-rgb), 0.04) 100%),
+        radial-gradient(rgba(var(--bs-primary-rgb), 0.06) 1px, transparent 1px);
+    background-size: 100% 100%, 24px 24px;
+    background-attachment: fixed;
+}
+
+// ──────────────────────────────────────────────
+// Card with left accent border
+// ──────────────────────────────────────────────
+.card-accent-left {
+    border-left: 3px solid var(--bs-primary) !important;
+}
+
+// ──────────────────────────────────────────────
+// Table admin — alternating rows + hover left border
+// ──────────────────────────────────────────────
+.table-admin {
+    --bs-table-striped-bg: rgba(var(--bs-primary-rgb), 0.03);
+
+    tbody tr {
+        border-left: 3px solid transparent;
+        transition: border-color 0.15s ease, background-color 0.15s ease;
+
+        &:hover {
+            border-left-color: var(--bs-primary);
+        }
+    }
 }

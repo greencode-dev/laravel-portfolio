@@ -45,7 +45,7 @@
                 <p class="text-sm mt-2 text-muted">
                     {{ __('Your email address is unverified.') }}
 
-                    <button form="send-verification" class="btn btn-outline-dark">
+                    <button form="send-verification" class="btn btn-outline-secondary shadow-sm">
                         {{ __('Click here to re-send the verification email.') }}
                     </button>
                 </p>
@@ -59,15 +59,14 @@
             @endif
         </div>
 
-        <div class="d-flex align-items-center gap-4">
-            <button class="btn btn-primary" type="submit">{{ __('Save') }}</button>
-
+        <div class="d-flex justify-content-end align-items-center gap-4">
             @if (session('status') === 'profile-updated')
             <div class="alert alert-success alert-dismissible fade show py-2 px-3 mb-0" role="alert">
                 <i class="bi bi-check-circle-fill me-1"></i> {{ __('Saved.') }}
                 <button type="button" class="btn-close py-2" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
+            <button class="btn btn-primary btn-lg shadow-sm" type="submit"><i class="bi bi-check-lg me-1"></i> {{ __('Save') }}</button>
         </div>
     </form>
 </section>

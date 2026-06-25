@@ -25,9 +25,13 @@
         </div>
 
         <div class="d-grid">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
                 {{ __('Send Password Reset Link') }}
             </button>
+        </div>
+
+        <div class="text-center mt-3">
+            <a class="small text-decoration-none" href="{{ route('login') }}">{{ __('Back to login') }}</a>
         </div>
     </form>
 </div>

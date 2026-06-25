@@ -35,15 +35,22 @@
             </label>
         </div>
 
-        <div class="d-flex justify-content-between align-items-center">
-            <button type="submit" class="btn btn-primary">
+        <div class="d-grid mb-3">
+            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
                 {{ __('Log in') }}
             </button>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
             @if (Route::has('password.request'))
                 <a class="text-decoration-none small" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
+            <div class="text-center text-sm-end">
+                <span class="small">{{ __("Don't have an account?") }}</span>
+                <a class="small fw-bold text-decoration-none" href="{{ route('register') }}">{{ __('Register') }}</a>
+            </div>
         </div>
     </form>
 </div>

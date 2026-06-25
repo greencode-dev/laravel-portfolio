@@ -10,12 +10,13 @@
         </a>
     </div>
 
-    <div class="card shadow-sm border-0">
+    <div class="card shadow-sm border-0 card-accent-left">
         <div class="card-body p-4">
             @include('admin.projects.partials.form', [
                 'action' => route('admin.projects.update', $project->id),
                 'method' => 'PUT',
                 'submitLabel' => __('Update Project'),
+                'cancelRoute' => route('admin.projects.show', $project->id),
             ])
         </div>
     </div>

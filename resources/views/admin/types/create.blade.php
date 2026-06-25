@@ -10,7 +10,7 @@
         </a>
     </div>
 
-    <div class="card shadow-sm border-0">
+    <div class="card shadow-sm border-0 card-accent-left">
         <div class="card-body p-4">
             @include('admin.types.partials.form', [
                 'submitLabel' => __('Create Type'),

@@ -22,7 +22,7 @@
                 <form id="delete-form" action="" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">
+                    <button type="submit" class="btn btn-danger shadow-sm">
                         <i class="bi bi-trash me-1"></i> {{ __("Delete") }}
                     </button>
                 </form>

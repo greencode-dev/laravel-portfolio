@@ -20,16 +20,19 @@
             @enderror
         </div>
 
-        <div class="d-flex justify-content-between align-items-center">
-            <button type="submit" class="btn btn-primary">
+        <div class="d-grid mb-3">
+            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
                 {{ __('Confirm Password') }}
             </button>
-            @if (Route::has('password.request'))
+        </div>
+
+        @if (Route::has('password.request'))
+            <div class="text-center">
                 <a class="text-decoration-none small" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
-            @endif
-        </div>
+            </div>
+        @endif
     </form>
 </div>
 @endsection

@@ -43,10 +43,15 @@
             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
         </div>
 
-        <div class="d-grid">
-            <button type="submit" class="btn btn-primary">
+        <div class="d-grid mb-3">
+            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
                 {{ __('Register') }}
             </button>
+        </div>
+
+        <div class="text-center">
+            <span class="small">{{ __("Already have an account?") }}</span>
+            <a class="small fw-bold text-decoration-none" href="{{ route('login') }}">{{ __('Log in') }}</a>
         </div>
     </form>
 </div>

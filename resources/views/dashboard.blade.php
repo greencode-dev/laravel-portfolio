@@ -18,7 +18,10 @@
                     @endif
 
                     <p class="mb-3">{{ __("Welcome back, :name!", ["name" => Auth::user()->name]) }}</p>
+
+                    @if (session('login_redirect'))
                     <p class="text-secondary small">{{ __("You will be redirected to the homepage in a few seconds...") }}</p>
+                    @endif
 
                     <a href="{{ url('/') }}" class="btn btn-primary">
                         <i class="bi bi-house me-1"></i> {{ __("Go to Homepage") }}

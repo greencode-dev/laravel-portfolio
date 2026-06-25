@@ -10,14 +10,14 @@
             <h1 class="h3 fw-bold mb-1 font-display">{{ __("My Projects") }}</h1>
             <p class="text-secondary small mb-0">{{ __("Manage your projects") }}</p>
         </div>
-        <a href="{{ route('admin.projects.create') }}" class="btn btn-primary shadow-sm">
+        <a href="{{ route('admin.projects.create') }}" class="btn btn-primary btn-lg shadow-sm">
             <i class="bi bi-plus-lg me-1"></i> {{ __("New Project") }}
         </a>
     </div>
 
     <div class="card shadow-sm border-0">
         <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
+            <table class="table table-hover table-striped table-admin align-middle mb-0">
                 <thead class="table-thead">
                     <tr>
                         <th scope="col" class="ps-3" style="width: 80px;">ID</th>

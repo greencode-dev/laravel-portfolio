@@ -14,7 +14,7 @@
     @vite(['resources/js/app.js'])
 </head>
 
-<body style="background: linear-gradient(180deg, var(--bs-body-bg) 0%, rgba(99, 102, 241, 0.04) 100%);">
+<body style="background: linear-gradient(180deg, var(--bs-body-bg) 0%, rgba(var(--bs-primary-rgb), 0.04) 100%);">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-glass shadow-sm">
             <div class="container">
@@ -50,7 +50,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Dashboard') }}</a>
+                                <a class="dropdown-item" href="{{ route('admin.projects.index') }}">{{ __('Projects') }}</a>
                                 <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
