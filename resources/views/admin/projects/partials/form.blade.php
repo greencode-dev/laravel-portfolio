@@ -23,7 +23,7 @@
                 @php
                     $typeColor = $type->color ?? '#6366f1';
                 @endphp
-                <option value="{{ $type->id }}" {{ old('type_id', $project->type_id ?? '') == $type->id ? 'selected' : '' }} style="--bs-option-color: {{ $typeColor }};">● {{ $type->name }}</option>
+                <option value="{{ $type->id }}" {{ old('type_id', $project->type_id ?? '') == $type->id ? 'selected' : '' }} style="color: {{ $typeColor }};">● {{ $type->name }}</option>
             @endforeach
         </select>
         @error('type_id')
@@ -81,3 +81,20 @@
         </button>
     </div>
 </form>
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var select = document.getElementById('type_id');
+    if (!select) return;
+
+    function syncColor() {
+        var opt = select.options[select.selectedIndex];
+        select.style.color = opt ? opt.style.color : '';
+    }
+
+    syncColor();
+    select.addEventListener('change', syncColor);
+});
+</script>
+@endpush
