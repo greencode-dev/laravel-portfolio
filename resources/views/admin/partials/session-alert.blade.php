@@ -13,3 +13,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
+
+@push('scripts')
+<script>
+setTimeout(function () {
+    document.querySelectorAll('.alert.show .btn-close').forEach(function (btn) {
+        btn.click();
+    });
+}, 3000);
+</script>
+@endpush
