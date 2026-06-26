@@ -22,7 +22,7 @@
                     <tr>
                         <th scope="col" class="ps-3" style="width: 80px;">ID</th>
                         <th scope="col">{{ __("Title") }}</th>
-                        <th scope="col">{{ __("Type") }}</th>
+                        <th scope="col">{{ __("Category") }}</th>
                         <th scope="col">{{ __("Description") }}</th>
                         <th scope="col" class="text-center" style="width: 150px;">{{ __("Actions") }}</th>
                     </tr>

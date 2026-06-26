@@ -12,7 +12,7 @@
         </a>
     </div>
 
-    <div class="card shadow-sm border-0 card-accent-left">
+    <div class="card card-accent-left">
         <div class="card-body p-4">
             <div class="mb-4">
                 <h4 class="fw-bold mb-1">{{ $technology->name }}</h4>

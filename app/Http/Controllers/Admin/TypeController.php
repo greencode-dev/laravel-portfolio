@@ -30,7 +30,7 @@ class TypeController extends Controller
 
         Type::create($data);
 
-        return redirect()->route('admin.types.index')->with('success', __('Type created successfully.'));
+        return redirect()->route('admin.types.index')->with('success', __('Category created successfully.'));
     }
 
     public function show(Type $type)
@@ -54,18 +54,18 @@ class TypeController extends Controller
 
         $type->update($data);
 
-        return redirect()->route('admin.types.index')->with('success', __('Type updated successfully.'));
+        return redirect()->route('admin.types.index')->with('success', __('Category updated successfully.'));
     }
 
     public function destroy(Type $type)
     {
         if ($type->projects()->count() > 0) {
             return redirect()->route('admin.types.index')
-                ->with('error', __('Cannot delete type: it has associated projects.'));
+                ->with('error', __('Cannot delete category: it has associated projects.'));
         }
 
         $type->delete();
 
-        return redirect()->route('admin.types.index')->with('success', __('Type deleted successfully.'));
+        return redirect()->route('admin.types.index')->with('success', __('Category deleted successfully.'));
     }
 }

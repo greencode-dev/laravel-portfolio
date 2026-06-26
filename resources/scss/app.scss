@@ -325,26 +325,23 @@ html, body {
     }
 }
 
-// Type badge colors — fallback first, then specific overrides
-.badge-type {
-    background-color: rgba(var(--bs-secondary-rgb), 0.12) !important;
-    color: var(--bs-secondary) !important;
+// Badge with color — use inline style for color, this is a fallback
+.badge-tech {
+    padding: 0.35rem 0.75rem;
+    font-weight: 500;
+    border-radius: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
 }
 
-@each $type, $color in (
-    "web-design": #6366f1,
-    "graphic-design": #ec4899,
-    "back-end": #10b981,
-    "front-end": #06b6d4,
-    "full-stack": #f59e0b,
-    "mobile": #8b5cf6,
-    "api": #14b8a6,
-    "design-system": #f97316
-) {
-    .badge-type-#{$type} {
-        background-color: rgba($color, 0.12) !important;
-        color: $color !important;
-    }
+.badge-tech::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
 }
 
 // Icon-only button utility
@@ -404,7 +401,12 @@ html, body {
 // Card with left accent border
 // ──────────────────────────────────────────────
 .card-accent-left {
-    border-left: 3px solid var(--bs-primary) !important;
+    border: 1px solid rgba(var(--bs-primary-rgb), 0.20);
+    border-left: 3px solid var(--bs-primary);
+    box-shadow:
+        0 0 0 1px rgba(var(--bs-primary-rgb), 0.03),
+        0 0 22px rgba(var(--bs-primary-rgb), 0.15),
+        0 11px 18px rgba(0, 0, 0, 0.13);
 }
 
 // ──────────────────────────────────────────────

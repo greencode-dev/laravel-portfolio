@@ -66,8 +66,8 @@
                         <div class="feature-icon mb-3">
                             <i class="bi bi-tags fs-1"></i>
                         </div>
-                        <h5 class="fw-bold font-display mb-2">{{ __("Project Types") }}</h5>
-                        <p class="text-secondary mb-0">{{ __("Categorize projects by type: web, design, back-end and more") }}</p>
+                        <h5 class="fw-bold font-display mb-2">{{ __("Categories") }}</h5>
+                        <p class="text-secondary mb-0">{{ __("Categorize projects by category: web, design, back-end and more") }}</p>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">

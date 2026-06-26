@@ -9,7 +9,7 @@
         <input type="text" name="name" id="name"
             class="form-control @error('name') is-invalid @enderror"
             value="{{ old('name', $type->name ?? '') }}"
-            placeholder="{{ __("Enter the type name") }}" required>
+            placeholder="{{ __("Enter the category name") }}" required>
         @error('name')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror

@@ -178,6 +178,7 @@
         <a href="?view=mix" class="btn {{ $view === 'mix' ? 'btn-dark' : 'btn-outline-secondary' }}">Mix ☀️ + 🌙</a>
         <a href="?view=primary" class="btn {{ $view === 'primary' ? 'btn-dark' : 'btn-outline-secondary' }}">Primary 🎯</a>
         <a href="?view=strade" class="btn {{ $view === 'strade' ? 'btn-dark' : 'btn-outline-secondary' }}">Strade 🧭</a>
+        <a href="?view=card-styles" class="btn {{ $view === 'card-styles' ? 'btn-dark' : 'btn-outline-secondary' }}">Card Styles 🃏</a>
     </div>
 
     <h1>🎨 Palette Colori</h1>
@@ -323,6 +324,254 @@
                 </div>
             @endforeach
         </div>
+
+    @elseif ($view === 'card-styles')
+        {{-- CARD STYLES --}}
+        @php
+            $light = [
+                'primary' => '#12A0D7',
+                'primaryRgb' => '18, 160, 215',
+                'bg' => '#f6f8fa',
+                'cardBg' => '#ffffff',
+                'color' => '#1e293b',
+                'muted' => '#64748b',
+                'border' => 'rgba(0,0,0,0.06)',
+            ];
+            $dark = [
+                'primary' => '#38bdf8',
+                'primaryRgb' => '56, 189, 248',
+                'bg' => '#0f172a',
+                'cardBg' => '#1a2744',
+                'color' => '#cbd5e1',
+                'muted' => '#94a3b8',
+                'border' => '#243b5e',
+            ];
+            $techs = [
+                ['name' => 'Laravel', 'color' => '#818cf8', 'rgb' => '129, 140, 248'],
+                ['name' => 'Vue.js',  'color' => '#f472b6', 'rgb' => '244, 114, 182'],
+                ['name' => 'Docker',  'color' => '#34d399', 'rgb' => '52, 211, 153'],
+            ];
+        @endphp
+
+        <style>
+            .cs-card {
+                border-radius:0.75rem;
+                transition: all 0.2s ease;
+            }
+            .cs-code {
+                font-family: monospace;
+                font-size: 0.8rem;
+                background: rgba(0,0,0,0.05);
+                padding: 0.1rem 0.5rem;
+                border-radius: 0.25rem;
+                font-weight: 600;
+            }
+            input[type="range"].cs-slider {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 100%;
+                height: 4px;
+                border-radius: 2px;
+                outline: none;
+                background: rgba(0,0,0,0.1);
+                transition: background 0.2s;
+            }
+            input[type="range"].cs-slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: var(--thumb-color, #12A0D7);
+                cursor: pointer;
+                border: 2px solid #fff;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+            }
+            input[type="range"].cs-slider::-moz-range-thumb {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: var(--thumb-color, #12A0D7);
+                cursor: pointer;
+                border: 2px solid #fff;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+            }
+        </style>
+
+        <div class="section-title">🃏 Card Styles</div>
+        <div class="section-sub">Tre varianti interattive — muovi lo slider per regolare l'intensità dell'effetto.</div>
+
+        @php
+            $styles = [
+                'A' => [
+                    'name' => 'Neon Glow',
+                    'code' => 'A01',
+                    'thumb' => '#12A0D7',
+                    'desc' => 'Glow diffuso attorno alla card. Più intensità = più alone luminoso.',
+                    'props' => ['glow', 'spread', 'shadowDepth'],
+                    'build' => function($p, $int) {
+                        $glow = 4 + $int * 6;
+                        $spread = 0 + $int * 2;
+                        $opacity = 0.03 + $int * 0.04;
+                        $shadowY = 2 + $int * 3;
+                        $shadowOp = 0.04 + $int * 0.03;
+                        return "border:1px solid rgba({$p['primaryRgb']}," . (0.08 + $int * 0.04) . ");border-left:3px solid {$p['primary']};box-shadow:0 0 0 1px rgba({$p['primaryRgb']},0.03),0 0 {$glow}px rgba({$p['primaryRgb']},{$opacity}),0 {$shadowY}px " . (6 + $int * 4) . "px rgba(0,0,0,{$shadowOp});";
+                    },
+                ],
+                'B' => [
+                    'name' => 'Glassmorphism',
+                    'code' => 'B01',
+                    'thumb' => '#38bdf8',
+                    'desc' => 'Effetto vetro con sfondo semi-trasparente e blur. Più intensità = più blur e trasparenza.',
+                    'props' => ['blur', 'alpha', 'glow'],
+                    'build' => function($p, $int) {
+                        $blur = 2 + $int * 4;
+                        $alpha = max(0.03, 0.12 - $int * 0.025);
+                        $opacity = 0.06 + $int * 0.04;
+                        return "background:rgba(255,255,255,{$alpha});backdrop-filter:blur({$blur}px);border:1px solid rgba({$p['primaryRgb']}," . (0.06 + $int * 0.04) . ");border-left:3px solid {$p['primary']};box-shadow:0 " . (4 + $int * 6) . "px " . (16 + $int * 8) . "px rgba(0,0,0,{$opacity}),0 0 0 1px rgba({$p['primaryRgb']},{$opacity});";
+                    },
+                ],
+                'C' => [
+                    'name' => 'Holographic Edge',
+                    'code' => 'C01',
+                    'thumb' => '#8b5cf6',
+                    'desc' => 'Luce interna che solleva il bordo con glow esterno. Più intensità = più rilievo.',
+                    'props' => ['inset', 'glow', 'lift'],
+                    'build' => function($p, $int) {
+                        $insetOp = 0.04 + $int * 0.06;
+                        $glowOp = 0.03 + $int * 0.04;
+                        $liftY = 1 + $int * 2;
+                        $liftOp = 0.02 + $int * 0.03;
+                        return "border:1px solid rgba({$p['primaryRgb']}," . (0.06 + $int * 0.03) . ");border-left:3px solid {$p['primary']};box-shadow:inset 0 0 0 1px rgba(255,255,255,{$insetOp}),0 {$liftY}px " . (2 + $int * 2) . "px rgba(0,0,0,{$liftOp}),0 " . (4 + $int * 8) . "px " . (12 + $int * 12) . "px rgba({$p['primaryRgb']},{$glowOp});";
+                    },
+                ],
+            ];
+        @endphp
+
+        <div id="cs-app">
+            @foreach ($styles as $key => $st)
+                @php
+                    $baseCode = $st['code'];
+                    $thumb = $st['thumb'];
+                @endphp
+                <div class="section-divider"></div>
+                <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+                    <h3 style="font-weight:700;margin-bottom:0;" class="d-flex align-items-center gap-2">
+                        {{ $key }} — {{ $st['name'] }}
+                        <span class="cs-code" id="cs-label-{{ $key }}">{{ $baseCode }}-0</span>
+                    </h3>
+                    <div style="display:flex;align-items:center;gap:0.75rem;min-width:200px;">
+                        <span style="font-size:0.75rem;font-weight:600;color:#64748b;" id="cs-val-{{ $key }}">0</span>
+                        <input type="range" class="cs-slider" id="cs-slider-{{ $key }}"
+                            min="0" max="10" value="2" step="1"
+                            style="--thumb-color:{{ $thumb }};">
+                        <span style="font-size:0.75rem;font-weight:600;color:#64748b;">10</span>
+                    </div>
+                </div>
+                <p style="font-size:0.85rem;color:#64748b;margin-bottom:1rem;">{{ $st['desc'] }}</p>
+
+                <div class="row g-0 mb-4" style="border-radius:0.75rem;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);border:1px solid rgba(0,0,0,0.06);">
+                    {{-- Light --}}
+                    <div class="col-12 col-md-6" style="background:{{ $light['bg'] }};padding:1.25rem;">
+                        <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;color:{{ $light['muted'] }};margin-bottom:0.75rem;">☀️ Light</div>
+                        <div class="cs-card" id="cs-card-{{ $key }}-light" style="background:{{ $light['cardBg'] }};padding:1.25rem;color:{{ $light['color'] }};">
+                            <div style="font-size:0.75rem;color:{{ $light['muted'] }};text-align:right;margin-bottom:0.5rem;">
+                                <div><i class="bi bi-calendar3 me-1"></i> 26/06/2026</div>
+                            </div>
+                            <h4 style="font-weight:700;font-family:'Space Grotesk',sans-serif;letter-spacing:-0.03em;margin-bottom:0.75rem;">Progetto</h4>
+                            <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.75rem;">
+                                <div>
+                                    <div style="font-size:0.8rem;color:{{ $light['muted'] }};margin-bottom:0.25rem;"><i class="bi bi-tag me-1"></i> Category</div>
+                                    <span style="display:inline-block;padding:0.25rem 0.75rem;border-radius:2rem;font-weight:500;font-size:0.85rem;color:{{ $light['primary'] }};background:rgba({{ $light['primaryRgb'] }},0.12);">Web Design</span>
+                                </div>
+                                <div>
+                                    <div style="font-size:0.8rem;color:{{ $light['muted'] }};margin-bottom:0.25rem;"><i class="bi bi-code-slash me-1"></i> Technologies</div>
+                                    <div style="display:flex;flex-wrap:wrap;gap:0.25rem;">
+                                        @foreach ($techs as $t)
+                                            <span style="display:inline-block;padding:0.25rem 0.75rem;border-radius:2rem;font-weight:500;font-size:0.85rem;color:{{ $t['color'] }};border:1px solid rgba({{ $t['rgb'] }},0.35);background:transparent;">{{ $t['name'] }}</span>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Dark --}}
+                    <div class="col-12 col-md-6" style="background:{{ $dark['bg'] }};padding:1.25rem;border-left:1px solid rgba(255,255,255,0.06);">
+                        <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;color:{{ $dark['muted'] }};margin-bottom:0.75rem;">🌙 Dark</div>
+                        <div class="cs-card" id="cs-card-{{ $key }}-dark" style="background:{{ $dark['cardBg'] }};padding:1.25rem;color:{{ $dark['color'] }};">
+                            <div style="font-size:0.75rem;color:{{ $dark['muted'] }};text-align:right;margin-bottom:0.5rem;">
+                                <div><i class="bi bi-calendar3 me-1"></i> 26/06/2026</div>
+                            </div>
+                            <h4 style="font-weight:700;font-family:'Space Grotesk',sans-serif;letter-spacing:-0.03em;margin-bottom:0.75rem;">Progetto</h4>
+                            <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.75rem;">
+                                <div>
+                                    <div style="font-size:0.8rem;color:{{ $dark['muted'] }};margin-bottom:0.25rem;"><i class="bi bi-tag me-1"></i> Category</div>
+                                    <span style="display:inline-block;padding:0.25rem 0.75rem;border-radius:2rem;font-weight:500;font-size:0.85rem;color:{{ $dark['primary'] }};background:rgba({{ $dark['primaryRgb'] }},0.15);">Web Design</span>
+                                </div>
+                                <div>
+                                    <div style="font-size:0.8rem;color:{{ $dark['muted'] }};margin-bottom:0.25rem;"><i class="bi bi-code-slash me-1"></i> Technologies</div>
+                                    <div style="display:flex;flex-wrap:wrap;gap:0.25rem;">
+                                        @foreach ($techs as $t)
+                                            <span style="display:inline-block;padding:0.25rem 0.75rem;border-radius:2rem;font-weight:500;font-size:0.85rem;color:{{ $t['color'] }};border:1px solid rgba({{ $t['rgb'] }},0.35);background:transparent;">{{ $t['name'] }}</span>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <script>
+        (function() {
+            const light = { primaryRgb: '18, 160, 215', primary: '#12A0D7' };
+            const dark  = { primaryRgb: '56, 189, 248', primary: '#38bdf8' };
+
+            const builders = {
+                A: (p, n) => {
+                    const g = 4 + n * 6, op = 0.03 + n * 0.04, sy = 2 + n * 3, so = 0.04 + n * 0.03, bo = 0.08 + n * 0.04;
+                    return `border:1px solid rgba(${p.primaryRgb},${bo});border-left:3px solid ${p.primary};box-shadow:0 0 0 1px rgba(${p.primaryRgb},0.03),0 0 ${g}px rgba(${p.primaryRgb},${op}),0 ${sy}px ${6+n*4}px rgba(0,0,0,${so});`;
+                },
+                B: (p, n) => {
+                    const bl = 2 + n * 4, al = Math.max(0.03, 0.12 - n * 0.025), op = 0.06 + n * 0.04, bo = 0.06 + n * 0.04;
+                    return `background:rgba(255,255,255,${al});backdrop-filter:blur(${bl}px);border:1px solid rgba(${p.primaryRgb},${bo});border-left:3px solid ${p.primary};box-shadow:0 ${4+n*6}px ${16+n*8}px rgba(0,0,0,${op}),0 0 0 1px rgba(${p.primaryRgb},${op});`;
+                },
+                C: (p, n) => {
+                    const io = 0.04 + n * 0.06, go = 0.03 + n * 0.04, ly = 1 + n * 2, lo = 0.02 + n * 0.03, bo = 0.06 + n * 0.03;
+                    return `border:1px solid rgba(${p.primaryRgb},${bo});border-left:3px solid ${p.primary};box-shadow:inset 0 0 0 1px rgba(255,255,255,${io}),0 ${ly}px ${2+n*2}px rgba(0,0,0,${lo}),0 ${4+n*8}px ${12+n*12}px rgba(${p.primaryRgb},${go});`;
+                },
+            };
+
+            const codes = { A: 'A01', B: 'B01', C: 'C01' };
+
+            ['A','B','C'].forEach(k => {
+                const slider = document.getElementById('cs-slider-' + k);
+                const label = document.getElementById('cs-label-' + k);
+                const valEl = document.getElementById('cs-val-' + k);
+                const cardLight = document.getElementById('cs-card-' + k + '-light');
+                const cardDark  = document.getElementById('cs-card-' + k + '-dark');
+                const fn = builders[k];
+
+                function update() {
+                    const n = parseInt(slider.value, 10);
+                    valEl.textContent = n;
+                    label.textContent = codes[k] + '-' + n;
+                    cardLight.style.cssText = 'background:' + cardLight.style._bg + ';padding:1.25rem;color:' + cardLight.style._color + ';' + fn(light, n);
+                    cardDark.style.cssText  = 'background:' + cardDark.style._bg  + ';padding:1.25rem;color:' + cardDark.style._color  + ';' + fn(dark, n);
+                }
+
+                cardLight.style._bg = '#ffffff';
+                cardLight.style._color = '#1e293b';
+                cardDark.style._bg  = '#1a2744';
+                cardDark.style._color = '#cbd5e1';
+
+                slider.addEventListener('input', update);
+                slider.value = '2';
+                update();
+            });
+        })();
+        </script>
 
     @else
         {{-- STRADE --}}
