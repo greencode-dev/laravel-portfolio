@@ -19,7 +19,7 @@
 
         <div class="mb-2">
             <label for="name">{{ __('Name') }}</label>
-            <input class="form-control" type="text" name="name" id="name" autocomplete="name" value="{{old('name', $user->name)}}" required autofocus>
+            <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" autocomplete="name" value="{{old('name', $user->name)}}" required autofocus>
             @error('name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->get('name')}}</strong>
@@ -32,7 +32,7 @@
                 {{ __('Email') }}
             </label>
 
-            <input id="email" name="email" type="email" class="form-control" value="{{ old('email', $user->email)}}" required autocomplete="username" />
+            <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $user->email)}}" required autocomplete="username" />
 
             @error('email')
             <span class="alert alert-danger mt-2" role="alert">

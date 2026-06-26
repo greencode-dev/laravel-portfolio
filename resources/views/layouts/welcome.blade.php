@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ __(config('app.name')) }} — {{ __("Manage your projects easily and professionally") }}">
     <title>{{ __(config('app.name')) }}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>📁</text></svg>">
     @vite('resources/js/app.js')
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -44,8 +45,8 @@
                             {{ Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Dashboard') }}</a>
-                            <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
+                            <a class="dropdown-item" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
+                            <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
                             <a class="dropdown-item" href="{{ route('admin.projects.index') }}">{{ __('Projects') }}</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>

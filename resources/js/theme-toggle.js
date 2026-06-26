@@ -1,8 +1,5 @@
 (function() {
     var html = document.documentElement;
-    var saved = localStorage.getItem('theme');
-    var theme = saved || 'light';
-    html.setAttribute('data-bs-theme', theme);
 
     document.addEventListener('DOMContentLoaded', function() {
         var toggle = document.getElementById('themeToggle');
@@ -20,7 +17,7 @@
         function updateTheme(t) {
             icon.className = t === 'dark' ? 'bi bi-moon-fill' : 'bi bi-sun-fill';
         }
-        updateTheme(theme);
+        updateTheme(html.getAttribute('data-bs-theme'));
 
         toggle.addEventListener('click', toggleTheme);
     });

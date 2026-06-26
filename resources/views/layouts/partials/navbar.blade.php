@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark navbar-glass shadow-sm mb-4">
+<nav class="navbar navbar-expand-md navbar-light navbar-glass shadow-sm mb-4">
     <div class="container">
         <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ route('admin.projects.index') }}">
             <i class="bi bi-folder2-open"></i>
@@ -32,8 +32,8 @@
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Dashboard') }}</a>
-                        <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
+                        <a class="dropdown-item" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
+                        <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>

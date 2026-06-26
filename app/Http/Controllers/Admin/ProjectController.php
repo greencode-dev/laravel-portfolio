@@ -22,7 +22,8 @@ class ProjectController extends Controller
     {
         $types = Type::orderBy('name')->get();
         $technologies = Technology::orderBy('name')->get();
-        return view('admin.projects.create', compact('types', 'technologies'));
+        $technologyIds = [];
+        return view('admin.projects.create', compact('types', 'technologies', 'technologyIds'));
     }
 
     public function store(StoreProjectRequest $request)

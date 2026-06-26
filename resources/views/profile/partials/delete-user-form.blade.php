@@ -40,9 +40,9 @@
 
                         <div class="input-group">
 
-                            <input id="password" name="password" type="password" class="form-control" placeholder="{{ __('Password') }}" />
+                            <input id="password" name="password" type="password" class="form-control @error('password', 'userDeletion') is-invalid @enderror" placeholder="{{ __('Password') }}" />
 
-                            @error('password')
+                            @error('password', 'userDeletion')
                             <span class="invalid-feedback mt-2" role="alert">
                                 <strong>{{ $errors->userDeletion->get('password')}}</strong>
                             </span>
