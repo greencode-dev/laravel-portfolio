@@ -41,4 +41,12 @@ Route::middleware(['auth', 'verified'])->name("admin.")->prefix("admin")->group(
 
 Route::get('/palette-preview', fn () => view('admin.palette-preview'))->middleware('auth');
 
+Route::get('/test-dd', function () {
+    echo '<h3>PHP_SAPI: ' . PHP_SAPI . '</h3>';
+    echo '<h3>html_errors: ' . ini_get('html_errors') . '</h3>';
+    echo '<h3>Accept: ' . ($_SERVER['HTTP_ACCEPT'] ?? 'N/A') . '</h3>';
+    echo '<hr>';
+    dd(['hello' => 'world', 'test' => [1, 2, 3], 'nested' => ['a' => 1, 'b' => 2]]);
+})->middleware('auth');
+
 require __DIR__.'/auth.php';

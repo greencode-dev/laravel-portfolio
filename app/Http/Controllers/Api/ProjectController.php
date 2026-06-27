@@ -21,7 +21,7 @@ class ProjectController extends Controller
 
     public function show(Project $project) {
 
-        $project->load('types', 'technologies');
+        $project->load('type', 'technologies');
 
         dd($project);
 
