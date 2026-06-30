@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    public function welcome() {
+    public function index() {
         $projects = Project::all();
 
         return response()->json([
@@ -23,12 +23,10 @@ class ProjectController extends Controller
 
         $project->load('type', 'technologies');
 
-        dd($project);
-
-        // return response()->json([
-        //     'success' => true,
-        //     'status' => 200,
-        //     'data' => $project,
-        // ]);
+        return response()->json([
+            'success' => true,
+            'status' => 200,
+            'data' => $project,
+        ]);
     }
 }
