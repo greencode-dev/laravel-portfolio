@@ -123,5 +123,20 @@
     "Projects:": "Progetti:",
     "Don't have an account?": "Non hai un account?",
     "Already have an account?": "Hai già un account?",
-    "Back to login": "Torna al login"
+    "Back to login": "Torna al login",
+    "Image": "Immagine",
+    "Remove Image": "Rimuovi immagine",
+    "Image Description": "Descrizione immagine",
+    "Image description (alt text)": "Descrizione immagine (testo alternativo)",
+    "Accepted formats: jpeg, png, gif, webp. Max 2MB.": "Formati accettati: jpeg, png, gif, webp. Max 2MB.",
+    "Select File": "Seleziona file",
+    "No file selected": "Nessun file selezionato",
+    "or drag and drop": "o trascina e rilascia",
+    "No image": "Nessuna immagine",
+    "at": "alle",
+    "Filtered by:": "Filtrato per:",
+    "All categories": "Tutte le categorie",
+    "Clear filter": "Rimuovi filtro",
+    "Read more": "Leggi tutto",
+    "Show less": "Mostra meno"
 }

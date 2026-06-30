@@ -424,3 +424,83 @@ html, body {
         }
     }
 }
+
+// ──────────────────────────────────────────────
+// Upload area (dropzone)
+// ──────────────────────────────────────────────
+.upload-area {
+    border: 2px dashed var(--bs-border-color);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover,
+    &.dragover {
+        border-color: var(--bs-primary);
+        background: rgba(var(--bs-primary-rgb), 0.04);
+    }
+
+    &.has-image {
+        padding: 0.5rem;
+    }
+}
+
+.upload-placeholder i {
+    font-size: 3rem;
+    color: var(--bs-primary);
+}
+
+.upload-preview {
+    display: none;
+    width: 100%;
+
+    img {
+        max-height: 300px;
+        width: 100%;
+        object-fit: contain;
+        border-radius: 0.5rem;
+    }
+}
+
+.upload-area.has-image .upload-placeholder {
+    display: none;
+}
+
+.upload-area.has-image .upload-preview {
+    display: block;
+}
+
+// ──────────────────────────────────────────────
+// Image lightbox (show page)
+// ──────────────────────────────────────────────
+.image-clickable {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: 0.85;
+    }
+}
+
+.image-placeholder {
+    border: 2px dashed var(--bs-border-color);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+        font-size: 3rem;
+        color: var(--bs-primary);
+    }
+}
+

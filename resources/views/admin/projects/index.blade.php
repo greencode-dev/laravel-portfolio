@@ -5,12 +5,28 @@
 @section('content')
     @include('admin.partials.session-alert')
 
-    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-4 gap-3">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
         <div>
             <h1 class="h3 fw-bold mb-1 font-display">{{ __("My Projects") }}</h1>
             <p class="text-secondary small mb-0">{{ __("Manage your projects") }}</p>
         </div>
-        <a href="{{ route('admin.projects.create') }}" class="btn btn-primary btn-lg shadow-sm">
+        <div class="d-flex align-items-center gap-2">
+            <select id="typeFilter" class="form-select form-select-sm" style="width: auto; min-width: 180px;" onchange="window.location.href=this.value">
+                <option value="{{ route('admin.projects.index', request()->except('type_id')) }}">{{ __("All categories") }}</option>
+                @foreach ($types as $type)
+                    @php
+                        $typeColor = $type->color ?? '#6366f1';
+                    @endphp
+                    <option value="{{ route('admin.projects.index', array_merge(request()->except('type_id'), ['type_id' => $type->id])) }}" {{ request('type_id') == $type->id ? 'selected' : '' }} style="color: {{ $typeColor }};">● {{ $type->name }}</option>
+                @endforeach
+            </select>
+            @if (request('type_id'))
+                <a href="{{ route('admin.projects.index', request()->except('type_id')) }}" class="btn btn-sm btn-outline-danger" title="{{ __("Clear filter") }}">
+                    <i class="bi bi-x-lg"></i>
+                </a>
+            @endif
+        </div>
+        <a href="{{ route('admin.projects.create') }}" class="btn btn-primary shadow-sm flex-shrink-0">
             <i class="bi bi-plus-lg me-1"></i> {{ __("New Project") }}
         </a>
     </div>
@@ -23,6 +39,7 @@
                         <th scope="col" class="ps-3" style="width: 80px;">ID</th>
                         <th scope="col">{{ __("Title") }}</th>
                         <th scope="col">{{ __("Category") }}</th>
+                        <th scope="col" style="width: 60px;">{{ __("Image") }}</th>
                         <th scope="col">{{ __("Description") }}</th>
                         <th scope="col" class="text-center" style="width: 150px;">{{ __("Actions") }}</th>
                     </tr>
@@ -64,4 +81,20 @@
     </div>
 
     @include('admin.projects.partials.delete-modal')
+
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var sel = document.getElementById('typeFilter');
+            if (sel) {
+                function syncColor() {
+                    var opt = sel.options[sel.selectedIndex];
+                    sel.style.color = sel.selectedIndex > 0 ? (opt.style.color || '') : '';
+                }
+                syncColor();
+                sel.addEventListener('change', syncColor);
+            }
+        });
+    </script>
+    @endpush
 @endsection

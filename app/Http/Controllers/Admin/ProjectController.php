@@ -14,8 +14,12 @@ class ProjectController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->integer('perPage', 10);
-        $projects = Project::orderBy('created_at', 'desc')->paginate($perPage)->withQueryString();
-        return view('admin.projects.index', compact('projects'));
+        $projects = Project::when($request->type_id, fn($q, $v) => $q->where('type_id', $v))
+            ->orderBy('created_at', 'desc')
+            ->paginate($perPage)
+            ->withQueryString();
+        $types = Type::orderBy('name')->get();
+        return view('admin.projects.index', compact('projects', 'types'));
     }
 
     public function create()
@@ -29,6 +33,13 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('projects', 'public');
+        }
+
+        unset($data['remove_image']);
+
         $project = Project::create($data);
 
         if ($request->has('technologies')) {
@@ -55,9 +66,25 @@ class ProjectController extends Controller
     public function update(StoreProjectRequest $request, Project $project)
     {
         $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $project->deleteImage();
+            $data['image'] = $request->file('image')->store('projects', 'public');
+        } elseif ($request->boolean('remove_image')) {
+            $project->deleteImage();
+            $data['image'] = null;
+            $data['image_description'] = null;
+        } else {
+            unset($data['image']);
+        }
+
+        unset($data['remove_image']);
+
         $project->update($data);
 
         $project->technologies()->sync($request->technologies ?? []);
+
+        $project->touch();
 
         return redirect()->route('admin.projects.show', $project->id)->with('success', __('Project updated successfully.'));
     }
@@ -65,6 +92,7 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->technologies()->detach();
+        $project->deleteImage();
         $project->delete();
         return redirect()->route('admin.projects.index')->with('success', __('Project deleted successfully.'));
     }

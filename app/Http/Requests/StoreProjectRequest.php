@@ -19,6 +19,9 @@ class StoreProjectRequest extends FormRequest
             'type_id' => ['nullable', 'integer', 'exists:types,id'],
             'technologies' => ['nullable', 'array'],
             'technologies.*' => ['exists:technologies,id'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'image_description' => ['nullable', 'string', 'max:255'],
+            'remove_image' => ['nullable', 'boolean'],
         ];
     }
 
@@ -29,6 +32,8 @@ class StoreProjectRequest extends FormRequest
             'description' => 'descrizione',
             'type_id' => 'tipologia',
             'technologies' => 'tecnologie',
+            'image' => 'immagine',
+            'image_description' => 'descrizione immagine',
         ];
     }
 }
